@@ -9,7 +9,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.wganizo.news.R
-import com.wganizo.news.contants.Constants
 import com.wganizo.news.viewmodels.TopHeadlinesViewModel
 
 class TopHeadlinesAdapter(private val focustList: List<TopHeadlinesViewModel>, private val context: Context) : RecyclerView.Adapter<TopHeadlinesAdapter.ViewHolder>() {
@@ -24,10 +23,10 @@ class TopHeadlinesAdapter(private val focustList: List<TopHeadlinesViewModel>, p
 
         val ItemsViewModel = focustList[position]
 
-        // Setting the title
+        // Setting the headline title
         holder.title.text = ItemsViewModel.title
 
-        // Setting the image
+        // Setting the news banner
         Glide.with(context)
             .load(ItemsViewModel.urlToImage)
             .into(holder.headlineBanner)
