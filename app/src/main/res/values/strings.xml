@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">News</string>
+    <string name="loading">Loading...</string>
+    <string name="dialog_color">#70ffffff</string>
 </resources>
