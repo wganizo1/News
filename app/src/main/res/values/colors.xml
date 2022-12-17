@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="dialogBackground">#00000050</color>
     <color name="loadingCardColor">#70ffffff</color>
+    <color name="transparent">#00000000</color>
 </resources>
