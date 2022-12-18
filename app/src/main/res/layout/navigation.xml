@@ -16,7 +16,14 @@
             android:layout_gravity="end"
             android:src="@mipmap/home_white" />
 
-
+    <ImageView
+        android:id="@+id/refresh"
+        android:layout_weight=".45"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:padding="15dp"
+        android:layout_gravity="end"
+        android:src="@mipmap/refresh" />
 
         <ImageView
             android:id="@+id/favourite"

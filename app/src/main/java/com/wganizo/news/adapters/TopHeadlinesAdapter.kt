@@ -35,6 +35,9 @@ class TopHeadlinesAdapter(private val focustList: List<TopHeadlinesViewModel>, p
 
         // Show the Author
         holder.author.text = itemsViewModel.author
+
+        // Show the Publish Date
+        holder.publishedAt.text = itemsViewModel.publishedAt
     }
 
 
@@ -50,6 +53,7 @@ class TopHeadlinesAdapter(private val focustList: List<TopHeadlinesViewModel>, p
         val title: TextView = itemView.findViewById(R.id.title)
         val headlineBanner: ImageView = itemView.findViewById(R.id.headline_banner)
         val author: TextView = itemView.findViewById(R.id.author)
+        val publishedAt: TextView = itemView.findViewById(R.id.published_at)
     }
 
 }

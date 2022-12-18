@@ -1,8 +1,10 @@
 package com.wganizo.news
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -25,13 +27,30 @@ class MainActivity : AppCompatActivity() {
     private val constants = Constants()
     private var client = OkHttpClient()
     private val topHeadlinesData = ArrayList<TopHeadlinesViewModel>()
+    private var country = "us"
+    private lateinit var favorites: ImageView
+    private lateinit var home: ImageView
+    private val storedFavourites = StoredFavourites()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         //Make API Call using the getTopHeadlines function
-        getTopHeadlines("us")
+        getTopHeadlines(country)
+
+        favorites = findViewById(R.id.favourite)
+        home = findViewById(R.id.home)
+        home.setOnClickListener {
+            getTopHeadlines(country)
+         }
+        favorites.setOnClickListener {
+        val favoriteArticles = "{\n" +
+                "   \"status\":\"ok\",\n" +
+                "   \"totalResults\":31,\n" +
+                "   \"articles\":[${storedFavourites.readFavorites(applicationContext)}]}"
+            showHeadlines(favoriteArticles.replace("},]}","}]}"))
+        }
     }
 
     private fun getTopHeadlines(country: String) {
@@ -43,6 +62,7 @@ class MainActivity : AppCompatActivity() {
                 .build()
             client.newCall(request).enqueue(object : Callback {
                 override fun onFailure(call: Call, e: IOException) {
+                    //Error
                     println("Error $e")
                     hideLoading()
                 }
@@ -59,12 +79,14 @@ class MainActivity : AppCompatActivity() {
 
             })
         } catch (e: Exception) {
+            //Error
             println("Error $e")
             hideLoading()
         }
     }
 
     private fun showHeadlines(responseData: String) {
+        topHeadlinesData.clear()
         // Parse json response
         val jsonObject = JSONTokener(responseData).nextValue() as JSONObject
         val articlesArray = jsonObject.getString("articles")
@@ -83,7 +105,8 @@ class MainActivity : AppCompatActivity() {
                     jsonData.getString("urlToImage"),
                     jsonData.getString("author"),
                     jsonData.getString("content"),
-                    jsonData.getString("url")
+                    jsonData.getString("url"),
+                    jsonData.getString("publishedAt")
                 )
             )
         }

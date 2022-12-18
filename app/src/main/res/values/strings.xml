@@ -4,4 +4,5 @@
     <string name="dialog_color">#70ffffff</string>
     <string name="news_banner_image">News Banner Image</string>
     <string name="read_more">Read More</string>
+    <string name="save">Save</string>
 </resources>
