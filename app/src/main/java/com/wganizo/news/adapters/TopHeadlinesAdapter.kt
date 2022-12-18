@@ -11,7 +11,6 @@ import com.bumptech.glide.Glide
 import com.wganizo.news.R
 import com.wganizo.news.viewmodels.TopHeadlinesViewModel
 
-
 class TopHeadlinesAdapter(private val focustList: List<TopHeadlinesViewModel>, private val context: Context) : RecyclerView.Adapter<TopHeadlinesAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
