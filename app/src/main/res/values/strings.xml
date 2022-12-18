@@ -2,4 +2,6 @@
     <string name="app_name">News</string>
     <string name="loading">Loading...</string>
     <string name="dialog_color">#70ffffff</string>
+    <string name="news_banner_image">News Banner Image</string>
+    <string name="read_more">Read More</string>
 </resources>
