@@ -12,19 +12,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/transparent">
+        <LinearLayout
+            android:id="@+id/linearlayout_headlines"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/headline_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                tools:listitem="@layout/top_headlines_cardview" />
+
+        </LinearLayout>
+    </ScrollView>
     <LinearLayout
-        android:id="@+id/linearlayout_headlines"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/headline_recyclerview"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/white"
-            tools:listitem="@layout/top_headlines_cardview" />
-
+        android:layout_alignParentBottom="true">
+        <include layout="@layout/navigation"/>
     </LinearLayout>
-    </ScrollView>
 </RelativeLayout>
