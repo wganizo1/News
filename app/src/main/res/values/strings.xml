@@ -5,4 +5,9 @@
     <string name="news_banner_image">News Banner Image</string>
     <string name="read_more">Read More</string>
     <string name="save">Save</string>
+
+    <string-array name="countries">
+        <item>us</item>
+        <item>ca</item>
+    </string-array>
 </resources>

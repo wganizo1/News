@@ -3,8 +3,7 @@ package com.wganizo.news
 import android.os.Build
 import android.os.Bundle
 import android.view.View
-import android.widget.ImageView
-import android.widget.Toast
+import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -32,6 +31,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var home: ImageView
     private lateinit var refresh: ImageView
     private val storedFavourites = StoredFavourites()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -166,6 +166,29 @@ class MainActivity : AppCompatActivity() {
             val favoriteArticles = constants.articles + storedFavourites.readFavorites(applicationContext) + constants.terminateJson
             showHeadlines(favoriteArticles.replace("},]}","}]}"))
         }
+
+        val countries = resources.getStringArray(R.array.countries)
+        val spinner = findViewById<Spinner>(R.id.spinnerCountry)
+        if (spinner != null) {
+            val adapter = ArrayAdapter(this,
+                android.R.layout.simple_spinner_item, countries)
+            spinner.adapter = adapter
+
+            spinner.onItemSelectedListener = object :
+                AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                    if(countries[position] != country) {
+                        country = countries[position]
+                        getTopHeadlines(country)
+                    }
+                    }
+
+                override fun onNothingSelected(parent: AdapterView<*>) {
+                    // write code to perform some action
+                }
+            }
+        }
+
     }
 
 }

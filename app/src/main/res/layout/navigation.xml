@@ -9,7 +9,7 @@
 
         <ImageView
             android:id="@+id/home"
-            android:layout_weight=".45"
+            android:layout_weight=".24"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:padding="15dp"
@@ -18,7 +18,7 @@
 
     <ImageView
         android:id="@+id/refresh"
-        android:layout_weight=".45"
+        android:layout_weight=".24"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:padding="15dp"
@@ -27,11 +27,19 @@
 
         <ImageView
             android:id="@+id/favourite"
-            android:layout_weight=".45"
+            android:layout_weight=".24"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:padding="10dp"
             android:layout_gravity="start"
             android:src="@mipmap/fav" />
+
+    <Spinner
+        android:id="@+id/spinnerCountry"
+        android:layout_weight=".24"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:gravity="start"
+        android:theme="@style/SpinnerThemeLight"/>
 
     </LinearLayout>
