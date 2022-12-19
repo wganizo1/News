@@ -1,10 +1,10 @@
 package com.wganizo.news
 
-import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() {
     private var country = "us"
     private lateinit var favorites: ImageView
     private lateinit var home: ImageView
+    private lateinit var refresh: ImageView
     private val storedFavourites = StoredFavourites()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,18 +40,8 @@ class MainActivity : AppCompatActivity() {
         //Make API Call using the getTopHeadlines function
         getTopHeadlines(country)
 
-        favorites = findViewById(R.id.favourite)
-        home = findViewById(R.id.home)
-        home.setOnClickListener {
-            getTopHeadlines(country)
-         }
-        favorites.setOnClickListener {
-        val favoriteArticles = "{\n" +
-                "   \"status\":\"ok\",\n" +
-                "   \"totalResults\":31,\n" +
-                "   \"articles\":[${storedFavourites.readFavorites(applicationContext)}]}"
-            showHeadlines(favoriteArticles.replace("},]}","}]}"))
-        }
+        //For Options such as favorites, home and refresh
+        onClick()
     }
 
     private fun getTopHeadlines(country: String) {
@@ -156,6 +147,25 @@ class MainActivity : AppCompatActivity() {
 
     private fun showArticle(position: Int){
         article.show(this,getString(R.string.loading),position,topHeadlinesData)
+    }
+
+    private fun onClick(){
+        //Initialise
+        favorites = findViewById(R.id.favourite)
+        home = findViewById(R.id.home)
+        refresh = findViewById(R.id.refresh)
+
+        //Add Listeners
+        refresh.setOnClickListener {
+            getTopHeadlines(country)
+        }
+        home.setOnClickListener {
+            getTopHeadlines(country)
+        }
+        favorites.setOnClickListener {
+            val favoriteArticles = constants.articles + storedFavourites.readFavorites(applicationContext) + constants.terminateJson
+            showHeadlines(favoriteArticles.replace("},]}","}]}"))
+        }
     }
 
 }

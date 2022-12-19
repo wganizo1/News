@@ -56,8 +56,7 @@ class Article{
                 json.put("url", topHeadlinesData[position].url)
                 json.put("urlToImage", topHeadlinesData[position].urlToImage)
                 json.put("publishedAt", topHeadlinesData[position].publishedAt)
-
-            } catch (e: JSONException) {
+                } catch (e: JSONException) {
                 e.printStackTrace()
             }
             storedFavourites.writeToFile("${json},${storedFavourites.readFavorites(context)}"  ,context)

@@ -12,4 +12,8 @@ class Constants{
     //ENDPOINTS
     val topHeadlines = "/v2/top-headlines"
 
+    val articles = "{'articles':["
+
+    val terminateJson = "]}"
+
 }
